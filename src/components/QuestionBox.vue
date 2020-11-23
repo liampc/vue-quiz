@@ -1,17 +1,14 @@
 <template>
     <div class="question-box-container">
         <b-jumbotron>
-            <template #lead>
+            <template #lead v-if="currentQuestion.question">
                 {{currentQuestion.question}}
             </template>
 
             <hr class="my-4">
 
-            <!-- <p v-for="(answer, index) in answers" :key="index">
-                {{answer}}
-            </p> -->
             <b-list-group>
-                <b-list-group-item v-for="(answer, index) in answers" :key="index">
+                <b-list-group-item v-for="(answer, index) in answers" :key="index" @click="selectAnswer(index)">
                     {{answer}}
                 </b-list-group-item>
             </b-list-group>
@@ -28,6 +25,16 @@ export default {
         currentQuestion: Object,
         next: Function,
     },
+    data(){
+        return {
+            selectedAnswer : null
+        }
+    },
+    methods: {
+        selectAnswer(index){
+            this.selectAnswer = index
+        }
+    }, 
     computed: {
         answers(){
             let answers = [...this.currentQuestion.incorrect_answers]
