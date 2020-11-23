@@ -18,6 +18,18 @@ export default {
   components: {
     Header,
     QuestionBox,
+  },
+  data(){
+    return {
+      question: []
+    }
+  },
+  mounted: function(){
+    fetch('https://opentdb.com/api.php?amount=10&category=31&difficulty=easy&type=multiple', {
+      method: 'GET',
+    })
+    .then((response) => response.json())
+    .then((jsonData) => this.question = jsonData.results)
   }
 } 
 </script>
