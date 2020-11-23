@@ -9,7 +9,8 @@
 
             <b-list-group>
                 <b-list-group-item v-for="(answer, index) in answers" :key="index" 
-                @click.prevent="selectAnswer(index)">
+                @click.prevent="selectAnswer(index)"
+                :class="[selectedIndex === index ? 'selected' :'']">
                     {{answer}}
                 </b-list-group-item>
             </b-list-group>
@@ -50,5 +51,26 @@ export default {
 <style scoped>
     .list-group {
         margin-bottom: 15px;
+    }
+
+    .list-group-item:hover {
+        color: white; 
+        background-color: lightblue;
+        cursor:pointer;
+    }
+
+    .selected {
+        color:black;
+        background-color: lightblue;
+    }
+
+    .correct {
+        color: black;
+        background-color: lightgreen;
+    }
+
+    .incorrect {
+        color: black;
+        background-color: red;
     }
 </style>
