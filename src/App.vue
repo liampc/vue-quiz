@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Header />
-    <QuestionBox />
+    <b-row>
+      <b-col sm="6" offset="3">
+        <QuestionBox />
+      </b-col>
+    </b-row> 
   </div>
 </template>
 
@@ -15,7 +19,7 @@ export default {
     Header,
     QuestionBox,
   }
-}
+} 
 </script>
 
 <style>
