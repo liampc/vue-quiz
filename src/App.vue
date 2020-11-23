@@ -3,7 +3,7 @@
     <Header />
     <b-row>
       <b-col sm="6" offset="3">
-        <QuestionBox />
+        <QuestionBox :currentQuestion="question[index]"/>
       </b-col>
     </b-row> 
   </div>
@@ -21,9 +21,10 @@ export default {
   },
   data(){
     return {
-      question: []
+      question: [],
+      index: 0
     }
-  },
+  },    
   mounted: function(){
     fetch('https://opentdb.com/api.php?amount=10&category=31&difficulty=easy&type=multiple', {
       method: 'GET',
