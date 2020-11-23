@@ -8,7 +8,8 @@
             <hr class="my-4">
 
             <b-list-group>
-                <b-list-group-item v-for="(answer, index) in answers" :key="index" @click="selectAnswer(index)">
+                <b-list-group-item v-for="(answer, index) in answers" :key="index" 
+                @click.prevent="selectAnswer(index)">
                     {{answer}}
                 </b-list-group-item>
             </b-list-group>
@@ -27,12 +28,13 @@ export default {
     },
     data(){
         return {
-            selectedAnswer : null
+            selectedIndex : null
         }
     },
     methods: {
         selectAnswer(index){
-            this.selectAnswer = index
+            this.selectedIndex = index
+            
         }
     }, 
     computed: {
