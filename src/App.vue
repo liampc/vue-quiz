@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :correctAnswers="correctAnswers" :totalAnswers="totalAnswers"/>
     <b-row>
       <b-col sm="6" offset="3">
         <QuestionBox 
-        :currentQuestion="question[index]" :next="next"/>
+        :currentQuestion="question[index]" :next="next" :increment="increment"/>
       </b-col>
     </b-row> 
   </div>
@@ -23,13 +23,21 @@ export default {
   data(){
     return {
       question: [],
-      index: 0
+      index: 0,
+      correctAnswers: 0,
+      totalAnswers: 0,
     }
   },
   methods: {
     next(){
       this.index++
-    } 
+    },
+    increment(isCorrect){
+      if (isCorrect) {
+        this.correctAnswers++
+      }
+      this.totalAnswers++ 
+    }
   },    
   mounted: function(){
     fetch('https://opentdb.com/api.php?amount=10&category=31&difficulty=easy&type=multiple', {
