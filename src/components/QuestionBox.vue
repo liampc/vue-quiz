@@ -45,11 +45,20 @@ export default {
         }  
     }, 
     watch: {
-        // #function that will reset the index when question changes and run shuffle function 
-        currentQuestion(){
-            this.selectedIndex = null 
-            this.shuffleAnswers()
+        // // #function that will reset the index when question changes and run shuffle function 
+        // currentQuestion(){
+        //     this.selectedIndex = null 
+        //     this.shuffleAnswers()
+        // }
+        // alternative method is to make an object
+        currentQuestion: {
+            immediate: true,
+            handler(){
+                this.selectedIndex = null
+                this.shuffleAnswers()
+            }
         }
+
     },
     computed: {
         answers(){
