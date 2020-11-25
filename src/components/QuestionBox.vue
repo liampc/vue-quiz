@@ -10,7 +10,7 @@
             <b-list-group>
                 <b-list-group-item v-for="(answer, index) in answers" :key="index" 
                 @click.prevent="selectAnswer(index)"
-                :class="[selectedIndex === index ? 'selected' :'']">
+                :class="classIndex(index)">
                     {{answer}}
                 </b-list-group-item>
             </b-list-group>
@@ -59,6 +59,20 @@ export default {
             this.answered = true
             this.increment(isCorrect)
         },
+        classIndex(index){
+            let result = ""
+            if (!this.answered && this.selectedIndex === index){
+                result = "selected"
+            }
+            else if (this.answered && this.correctIndex === index){
+                result = "correct"
+            }
+            else if (this.answered && this.selectedIndex === index && 
+            this.correctIndex !== index){
+                result = "incorrect"
+            }
+            return result
+        }
     }, 
     watch: {
         // // #function that will reset the index when question changes and run shuffle function 
@@ -71,7 +85,7 @@ export default {
             immediate: true,
             handler(){
                 this.selectedIndex = null
-                this.answered = null
+                this.answered = null 
                 this.shuffleAnswers()
             }
         }
